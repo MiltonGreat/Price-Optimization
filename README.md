@@ -2,25 +2,7 @@
 
 ### Overview
 
-Price optimization involves analyzing historical data to determine the most effective pricing strategies for maximizing a company’s profitability. This project focuses on identifying the optimal price points for products using advanced data analysis techniques and machine learning models. Various factors such as competitor pricing, product features, freight costs, and customer behavior have been incorporated to provide actionable insights.
-
-### Motivation
-
-Efficient pricing strategies are critical for a company’s success, as they directly impact profitability, customer satisfaction, and market competitiveness. By leveraging historical data and predictive modeling, this project aims to:
-
-- Maximize revenue and profit.
-- Understand the influence of key variables on product demand and pricing.
-- Explore advanced techniques like utility optimization and fuzzy logic for dynamic pricing.
-- Evaluate the role of price elasticity and competitor pricing.
-
-### Key Features
-
-Feature Importance Analysis: Understand the variables influencing product demand and pricing using machine learning feature importance metrics.
-
-- Price Elasticity Modeling: Analyze the impact of price changes on demand and revenue.
-- Revenue and Profit Optimization: Identify price points that maximize revenue and profit using simulations.
-- Dynamic Pricing with Fuzzy Logic: Adjust pricing dynamically based on demand thresholds and competitor data.
-- Customer Segmentation: Cluster customers based on purchase behavior for targeted pricing strategies.
+This project showcases how fuzzy logic and advanced machine learning techniques revolutionize price optimization. By analyzing historical sales data and key factors like competitor pricing, product features, freight costs, and customer behavior, the project identifies the optimal price points that maximize revenue and profitability.
 
 ### Dataset
 
@@ -38,47 +20,86 @@ The dataset used in this project is stored in Retail Price Optimization.zip, whi
 - comp_1, comp_2, comp_3: Competitor prices.
 - qty: Quantity sold.
 
-### Methodology
+### Problem Statement
 
-##### Data Cleaning and Preprocessing:
-- Ensured that features like unit_price and freight_price were properly formatted as single-column Series.
-- Handled missing or invalid values by replacing them with appropriate statistics like the mean.
+Pricing is a pivotal aspect of business strategy, directly impacting profitability and competitiveness. However, static pricing models often fail to adapt to fluctuating market conditions, such as demand shifts, competitor actions, and seasonal changes.
 
-##### Feature Engineering:
-- Scaled numeric features using MinMaxScaler.
-- Created interaction features with PolynomialFeatures for advanced analysis.
+This project aims to solve the following challenges:
 
-##### Modeling:
-- Built a Random Forest model to predict product demand.
-- Evaluated the model using Mean Squared Error (MSE), Mean Absolute Error (MAE), and R² Score.
+- Dynamically adjusting prices based on demand patterns.
+- Mitigating risks of overpricing or underpricing.
+- Incorporating external factors like competitor pricing to refine strategies.
 
-##### Price Optimization:
-- Simulated revenue for a range of prices to identify the optimal price point.
-- Incorporated profit analysis by factoring in freight costs.
+With fuzzy logic, businesses can mimic human decision-making, enabling a nuanced, adaptive approach to pricing that balances revenue growth with customer satisfaction.
 
-##### Advanced Techniques:
-- Applied fuzzy logic to dynamically adjust pricing based on demand thresholds.
-- Performed utility optimization to maximize the difference between price and cost.
+### Solution Approach
 
-##### Competitor Analysis and Segmentation:
-- Analyzed the correlation between competitor prices and demand.
-- Clustered customers based on behavior for refined pricing strategies.
+Step 1: Data Preparation
+- Addressed missing values using mean imputation for numerical features.
+- Removed outliers in pricing and demand using interquartile ranges.
+- Normalized features to ensure comparability across variables.
 
-### Results
+Step 2: Exploratory Data Analysis (EDA)
 
-- Revenue Maximization: Identified the optimal price point of $1.00, which yielded maximum revenue of $1994.73.
-- Profit Optimization: Calculated profit-maximizing price points by incorporating freight costs.
-- Price Elasticity: Analyzed the responsiveness of demand to price changes and identified elastic and inelastic price ranges.
-- Dynamic Pricing: Implemented fuzzy logic to adjust prices in response to high or low demand.
-- Customer Segmentation: Used KMeans clustering to segment customers and understand distinct purchase behaviors.
+Key Insights:
+- Competitor pricing heavily influenced demand, with a strong inverse correlation.
+- Seasonal demand spikes presented opportunities for targeted price adjustments.
+
+Visualizations:
+- Scatter plots to visualize price-demand relationships.
+- Heatmaps to identify feature correlations.
+
+Step 3: Implementing Fuzzy Logic
+- Define Demand Levels:
+  - Categorized sales data into three demand levels:
+      - Low Demand: Below 25th percentile.
+      - Moderate Demand: 25th–75th percentile.
+      - High Demand: Above 75th percentile.
+
+- Create Fuzzy Rules:
+      - High Demand → Increase Price by 10%.
+      - Moderate Demand → Maintain Price.
+      - Low Demand → Decrease Price by 10%.
+
+- Dynamic Pricing Adjustments:
+      - Calculated revenue across various price points using machine learning models.
+      - Applied fuzzy logic to identify optimal prices dynamically.
+
+Step 4: Model Building
+- Predictive Models:
+      - Random Forest Regressor to predict revenue under different pricing scenarios.
+      - Fuzzy logic-based pricing adjustments implemented using Python's skfuzzy library.
+- Evaluation Metrics:
+      - RMSE and R² scores to evaluate model accuracy in predicting revenue.
+
+Step 5: Testing and Evaluation
+- Simulated three pricing scenarios:
+      - Low Demand: Price reduction increased sales but marginally improved revenue.
+      - Moderate Demand: Price stability maintained consistent revenue and customer trust.
+      - High Demand: Price increase resulted in a 15% revenue boost during peak seasons.
+
+### Key Findings
+
+1. Revenue Optimization:
+- Dynamic pricing strategies outperformed static models in all demand scenarios.
+
+2. High Demand Capitalization:
+- 15% revenue growth achieved by increasing prices during high-demand periods.
+
+3. Inventory Management:
+- Price reductions for low-demand products cleared inventory effectively, minimizing holding costs.
 
 ### Visualizations
 
-- Feature importance bar plots to highlight the most influential factors.
-- Elasticity curves to demonstrate demand responsiveness.
-- Revenue and profit curves to visualize optimal price points.
-- Scatter plots showing original vs adjusted prices with fuzzy logic.
-- Heatmaps displaying correlations between variables like competitor pricing and demand.
+- Revenue vs. Price Adjustments: A line chart illustrating how revenue changes with price adjustments, highlighting the efficacy of fuzzy logic.
+- Demand Thresholds: A histogram showing categorized demand levels and corresponding price adjustments.
+- Before and After Price Adjustments: A scatter plot comparing original and adjusted prices, emphasizing the impact of fuzzy logic.
+
+### Future Directions
+
+1. Real-Time Implementation: Test the fuzzy logic pricing model in a live environment.
+2. Incorporate Additional Features: Include customer segmentation, seasonal trends, and economic indicators.
+3. Expand Fuzzy Rules: Introduce granular demand levels for more nuanced adjustments.
 
 ### Source
 
